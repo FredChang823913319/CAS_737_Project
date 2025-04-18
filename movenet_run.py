@@ -69,7 +69,7 @@ def run_movenet_tflite(input_image, interpreter):
 # Evaluating the pose estimation using movenet
 def movenet_eval(input_folder, output_folder, output_landmark_folder):
     # Load the MoveNet model
-    model_path = 'movenet_lite/model.tflite'  # movenet_lightning_f16
+    model_path = 'movenet/movenet_lite/model.tflite'  # movenet_lightning_f16
     interpreter = load_movenet_tflite_model(model_path)
 
     # Create output folder if it doesn't exist
@@ -89,8 +89,8 @@ def movenet_eval(input_folder, output_folder, output_landmark_folder):
 
             # Run model inference.
             keypoints_with_scores = run_movenet_tflite(input_image, interpreter)
-            print(keypoints_with_scores)
-            print(keypoints_with_scores.shape)
+            # print(keypoints_with_scores)
+            # print(keypoints_with_scores.shape)
             # break
             # Visualize the predictions with image.
             display_image = tf.expand_dims(image, axis=0)
@@ -99,11 +99,9 @@ def movenet_eval(input_folder, output_folder, output_landmark_folder):
             output_overlay = draw_prediction_on_image(
                 np.squeeze(display_image.numpy(), axis=0), keypoints_with_scores)
 
-
             output_path = os.path.join(output_folder, filename)
-            # output_bgr = cv2.cvtColor(output_overlay, cv2.COLOR_RGB2BGR)
-            # cv2.imwrite(output_path, output_bgr)
 
+            # timing testing only commented out below section
             # Convert overlay from RGB to BGR (if needed)
             output_bgr = cv2.cvtColor(output_overlay, cv2.COLOR_RGB2BGR)
             # Remove white borders
@@ -117,7 +115,7 @@ def movenet_eval(input_folder, output_folder, output_landmark_folder):
 
             # break 
 
-    print(f"Annotation complete. Check the '{output_folder}' folder.")
+    # print(f"Annotation complete. Check the '{output_folder}' folder.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Annotate frames with MoveNet Pose.")

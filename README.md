@@ -72,3 +72,7 @@
 | angles scenarios (squat_side_good_lighting, squat_angle_good_lighting, squat_front_good_lighting) | 103.46    | 103.08    |
 | lightning_scenarios(squat_front_good_lighting, squat_front_low_exposure, squat_front_dim_lighting) | 23.629396 | 2794.7941 |
 | difficult_scenarios(squat_side_good_lighting, squat_occulsion_good_lighting, squat_front_low_exposure) | 64.410076 | 2022.7493 |
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

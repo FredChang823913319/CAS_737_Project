@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import statistics   
 
 def read_points(file_path):
     """Read (x, y) points from a file and skip invalid lines."""
@@ -44,7 +45,16 @@ def compare_directories(dir1, dir2):
 
         total_distance = sum(euclidean_distance(p1, p2) for p1, p2 in zip(points1, points2))
         distances[filename] = total_distance
-
+    
+    
+    if distances:                       
+        # variance (divide by N) 
+        overall_var = statistics.pvariance(distances.values())
+        distances['distance sum'] = sum(distances.values())
+        distances['variance'] = overall_var
+    else:
+        distances['variance'] = 0.0   
+        distances['distance sum'] = 0.0       
     return distances
 
 if __name__ == "__main__":
